@@ -40,7 +40,7 @@ export function InteractionScreen({ onComplete }: InteractionScreenProps) {
   if (selectedAction) {
     const action = actions.find(a => a.id === selectedAction)!;
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-6">
+      <div className="min-h-screen bg-background flex items-center justify-center px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -70,13 +70,13 @@ export function InteractionScreen({ onComplete }: InteractionScreenProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <div className="px-6 pt-8 pb-6">
+      <div className="px-6 pt-8 pb-6 md:px-8 md:pt-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             How would you
             <br />
             like to connect?
@@ -88,8 +88,8 @@ export function InteractionScreen({ onComplete }: InteractionScreenProps) {
       </div>
 
       {/* Action cards */}
-      <div className="flex-1 px-6 pb-32">
-        <div className="space-y-4">
+      <div className="flex-1 px-6 pb-32 md:px-8 md:pb-12">
+        <div className="space-y-4 md:grid md:grid-cols-3 md:gap-4 md:space-y-0">
           {actions.map((action, i) => (
             <motion.button
               key={action.id}
@@ -124,7 +124,7 @@ export function InteractionScreen({ onComplete }: InteractionScreenProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-6 border border-primary/10"
+          className="mt-8 bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-6 border border-primary/10 md:max-w-2xl"
         >
           <div className="flex items-start gap-4">
             <div className="w-10 h-10 rounded-full bg-card flex items-center justify-center flex-shrink-0">

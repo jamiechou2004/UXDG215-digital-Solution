@@ -61,7 +61,7 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 md:pb-12">
       {/* Top navigation with back button */}
       {onBack && (
         <div className="px-6 pt-6">
@@ -70,7 +70,7 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
       )}
 
       {/* Header */}
-      <div className="px-6 pt-6 pb-6">
+      <div className="px-6 pt-6 pb-6 md:px-8 md:pt-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,19 +79,19 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
           <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
             The Hideout
           </p>
-          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             Choose your
             <br />
             energy
           </h1>
-          <p className="text-[16px] leading-relaxed text-foreground/70" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="max-w-2xl text-[16px] leading-relaxed text-foreground/70" style={{ fontFamily: 'Inter, sans-serif' }}>
             Every table has its own vibe. Find one that matches how you're feeling.
           </p>
         </motion.div>
       </div>
 
       {/* Table type cards */}
-      <div className="px-6 space-y-4">
+      <div className="px-6 space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 md:px-8 xl:grid-cols-3">
         {tableTypes.map((table, i) => (
           <motion.button
             key={table.id}
@@ -136,7 +136,7 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="mx-6 mt-8"
+        className="mx-6 mt-8 md:mx-8 md:max-w-xl"
       >
         <div className="bg-card rounded-3xl p-6 border border-border shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
           <div className="flex items-center justify-between mb-3">

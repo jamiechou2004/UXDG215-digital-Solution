@@ -25,16 +25,16 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 md:pb-12">
       {/* Top navigation with back button */}
       {onBack && (
-        <div className="px-6 pt-6">
+        <div className="px-6 pt-6 md:px-8 md:pt-10">
           <BackButton onBack={onBack} />
         </div>
       )}
 
       {/* Header - Minimal, unobtrusive */}
-      <div className="px-6 pt-6 pb-6">
+      <div className="px-6 pt-6 pb-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
             </button>
           </div>
 
-          <h1 className="text-[32px] leading-tight mb-2" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[32px] leading-tight mb-2 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             Sunday morning
             <br />
             writers
@@ -68,8 +68,8 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
       </div>
 
       {/* Members grid */}
-      <div className="px-6 mb-8">
-        <div className="grid grid-cols-2 gap-3">
+      <div className="px-6 mb-8 md:px-8">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {members.map((member, i) => (
             <motion.button
               key={member.id}
@@ -108,7 +108,7 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="px-6 mb-8"
+          className="px-6 mb-8 md:px-8"
         >
           <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-6 border border-primary/10">
             <div className="flex items-start justify-between mb-4">
@@ -153,7 +153,7 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="px-6 mb-8"
+        className="px-6 mb-8 md:px-8"
       >
         <h3 className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
           Shared interests
@@ -176,7 +176,7 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1 }}
-        className="px-6"
+        className="px-6 md:px-8"
       >
         <div className="bg-card rounded-3xl p-6 border border-border">
           <div className="flex items-start gap-4">
@@ -203,7 +203,7 @@ export function InTableScreen({ onViewPerson, onLeaveTable, onBack }: InTableScr
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="px-6 mt-8"
+        className="px-6 mt-8 md:px-8"
       >
         <div className="text-center">
           <p className="text-[14px] text-foreground/50 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>

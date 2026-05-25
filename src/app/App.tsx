@@ -164,7 +164,7 @@ export default function App() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 px-4 pb-4 pt-2 bg-gradient-to-t from-background via-background/95 to-transparent"
+        className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 px-4 pb-4 pt-2 bg-gradient-to-t from-background via-background/95 to-transparent md:hidden"
         aria-label="Primary"
       >
         <div className="grid grid-cols-4 rounded-[28px] border border-border/70 bg-card/92 p-1.5 shadow-[0_12px_36px_rgba(0,0,0,0.12)] backdrop-blur-2xl">
@@ -204,11 +204,80 @@ export default function App() {
     );
   };
 
+  const renderDesktopNav = () => {
+    if (!showTabBar) {
+      return null;
+    }
+
+    const activeTab = getActiveTab();
+
+    return (
+      <motion.nav
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed left-0 right-0 top-0 z-50 hidden border-b border-border/60 bg-background/86 px-8 py-3 backdrop-blur-2xl md:block"
+        aria-label="Primary"
+      >
+        <div className="mx-auto flex max-w-6xl items-center justify-between">
+          <button
+            type="button"
+            onClick={() => navigateToTab('energy-overview')}
+            className="text-left"
+          >
+            <div className="text-[18px] leading-none" style={{ fontFamily: 'Cormorant, serif', fontWeight: 600 }}>
+              The Hideout
+            </div>
+            <div className="mt-1 text-[12px] text-foreground/45" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Social table companion
+            </div>
+          </button>
+
+          <div className="flex items-center gap-1 rounded-full border border-border/70 bg-card/90 p-1 shadow-[0_8px_24px_rgba(0,0,0,0.08)]">
+            {tabItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={item.action}
+                  className="relative flex h-10 items-center gap-2 rounded-full px-4 text-[13px] transition-all duration-200 active:scale-95"
+                  style={{ fontFamily: 'Inter, sans-serif', fontWeight: isActive ? 600 : 500 }}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="desktopPrimaryTab"
+                      className="absolute inset-0 rounded-full bg-primary/10"
+                      transition={{ type: 'spring', bounce: 0.18, duration: 0.55 }}
+                    />
+                  )}
+                  <Icon
+                    size={17}
+                    strokeWidth={1.8}
+                    className={`relative ${isActive ? 'text-primary' : 'text-foreground/45'}`}
+                  />
+                  <span className={`relative ${isActive ? 'text-primary' : 'text-foreground/55'}`}>
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </motion.nav>
+    );
+  };
+
   return (
-    <div className="relative mx-auto min-h-screen max-w-md overflow-x-hidden bg-background">
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
+      {renderDesktopNav()}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentScreen}
+          className="mx-auto w-full max-w-md md:max-w-6xl md:pt-16"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}

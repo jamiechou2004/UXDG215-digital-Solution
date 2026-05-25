@@ -52,14 +52,14 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 md:pb-12">
       {/* Top navigation with back button */}
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 md:px-8 md:pt-10">
         <BackButton onBack={onBack} />
       </div>
 
       {/* Header */}
-      <div className="px-6 pt-6 pb-6">
+      <div className="px-6 pt-6 pb-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
           <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
             Tables
           </p>
-          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             Active tables
           </h1>
           <p className="text-[16px] leading-relaxed text-foreground/70" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -78,7 +78,7 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
       </div>
 
       {/* Table cards */}
-      <div className="px-6 space-y-4">
+      <div className="px-6 space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 md:px-8 xl:grid-cols-3">
         {tables.map((table, i) => (
           <motion.button
             key={table.id}

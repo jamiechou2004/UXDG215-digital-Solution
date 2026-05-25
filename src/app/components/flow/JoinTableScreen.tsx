@@ -19,12 +19,12 @@ export function JoinTableScreen({ onJoined }: JoinTableScreenProps) {
   }, [step, onJoined]);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6">
+    <div className="min-h-screen bg-background flex items-center justify-center px-6 md:px-8">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-sm"
+        className="w-full max-w-sm md:max-w-md"
       >
         {step === 'scanning' && (
           <div className="text-center">

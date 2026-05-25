@@ -7,9 +7,9 @@ interface CafeEntryScreenProps {
 
 export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col md:grid md:grid-cols-[minmax(360px,0.95fr)_minmax(420px,1.05fr)] md:items-stretch">
       {/* Hero image section */}
-      <div className="relative h-[45vh] overflow-hidden">
+      <div className="relative h-[45vh] overflow-hidden md:h-screen">
         <ImageWithFallback
           src="https://images.unsplash.com/photo-1624583338957-4d155ca886dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
           alt="Café interior"
@@ -22,7 +22,7 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute bottom-6 left-6 right-6"
+          className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10"
         >
           <div className="bg-card/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
             <div className="flex items-start justify-between mb-3">
@@ -60,13 +60,13 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
       </div>
 
       {/* Content section */}
-      <div className="flex-1 px-6 pt-8 pb-32">
+      <div className="flex-1 px-6 pt-8 pb-32 md:flex md:items-center md:px-12 md:pb-40 md:pt-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h2 className="text-[28px] leading-tight mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 500 }}>
+          <h2 className="text-[28px] leading-tight mb-4 md:text-[44px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 500 }}>
             Welcome to
             <br />
             a social space
@@ -76,7 +76,7 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
           </p>
 
           {/* Current vibe indicators */}
-          <div className="space-y-3 mb-12">
+          <div className="space-y-3 mb-12 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
             <div className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
               Current atmosphere
             </div>
@@ -137,7 +137,7 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 1 }}
-        className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background to-transparent"
+        className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background via-background to-transparent md:left-auto md:right-[max(2rem,calc((100vw-72rem)/2+2rem))] md:bottom-8 md:w-[420px] md:p-0 md:bg-transparent"
       >
         <button
           onClick={onContinue}

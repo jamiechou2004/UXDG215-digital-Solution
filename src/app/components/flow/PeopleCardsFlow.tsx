@@ -38,14 +38,14 @@ export function PeopleCardsFlow({ onSelectPerson, onBack }: PeopleCardsFlowProps
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 md:pb-12">
       {/* Top navigation with back button */}
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 md:px-8 md:pt-10">
         <BackButton onBack={onBack} />
       </div>
 
       {/* Header */}
-      <div className="px-6 pt-6 pb-6">
+      <div className="px-6 pt-6 pb-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export function PeopleCardsFlow({ onSelectPerson, onBack }: PeopleCardsFlowProps
           <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
             At this table
           </p>
-          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             People you're
             <br />
             sitting with
@@ -66,7 +66,7 @@ export function PeopleCardsFlow({ onSelectPerson, onBack }: PeopleCardsFlowProps
       </div>
 
       {/* People cards stack */}
-      <div className="px-6 space-y-4">
+      <div className="px-6 space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 md:px-8 xl:grid-cols-3">
         {people.map((person, i) => (
           <motion.button
             key={person.id}
@@ -158,7 +158,7 @@ export function PeopleCardsFlow({ onSelectPerson, onBack }: PeopleCardsFlowProps
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="px-6 mt-8"
+        className="px-6 mt-8 md:max-w-2xl md:px-8"
       >
         <div className="bg-card rounded-2xl p-6 border border-border text-center">
           <p className="text-[14px] text-foreground/60 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>

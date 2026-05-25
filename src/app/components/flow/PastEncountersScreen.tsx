@@ -41,14 +41,14 @@ export function PastEncountersScreen({ onSelectPerson, onBack }: PastEncountersS
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-32">
+    <div className="min-h-screen bg-background pb-32 md:pb-12">
       {/* Top navigation with back button */}
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 md:px-8 md:pt-10">
         <BackButton onBack={onBack} />
       </div>
 
       {/* Header */}
-      <div className="px-6 pt-6 pb-6">
+      <div className="px-6 pt-6 pb-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export function PastEncountersScreen({ onSelectPerson, onBack }: PastEncountersS
           <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
             Your connections
           </p>
-          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
             People you've
             <br />
             met at cafés
@@ -69,7 +69,7 @@ export function PastEncountersScreen({ onSelectPerson, onBack }: PastEncountersS
       </div>
 
       {/* Timeline of encounters */}
-      <div className="px-6 space-y-6">
+      <div className="px-6 space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 md:px-8">
         {/* Today section */}
         <div>
           <div className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3 px-1" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -191,7 +191,7 @@ export function PastEncountersScreen({ onSelectPerson, onBack }: PastEncountersS
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="px-6 mt-8"
+        className="px-6 mt-8 md:max-w-2xl md:px-8"
       >
         <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-6 border border-primary/10">
           <div className="flex items-start gap-4">
