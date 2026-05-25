@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Armchair, Coffee, Compass, Users } from 'lucide-react';
+import { Armchair, Coffee, Compass, Info, Users } from 'lucide-react';
 import { CafeEntryScreen } from './components/flow/CafeEntryScreen';
 import { SocialEnergyOverview } from './components/flow/SocialEnergyOverview';
 import { TableBrowsingScreen } from './components/flow/TableBrowsingScreen';
@@ -31,6 +31,7 @@ export default function App() {
   const [navigationHistory, setNavigationHistory] = useState<Screen[]>(['cafe-entry']);
   const [selectedTableType, setSelectedTableType] = useState('casual-talk');
   const [hasJoinedTable, setHasJoinedTable] = useState(false);
+  const [showTableHint, setShowTableHint] = useState(false);
 
   const canGoBack = navigationHistory.length > 1;
   const rootScreens: Screen[] = ['energy-overview', 'table-browsing', 'in-table', 'people-cards', 'past-encounters'];
@@ -78,22 +79,32 @@ export default function App() {
   };
 
   const handleSelectEnergy = (tableType: string) => {
+    setShowTableHint(false);
     setSelectedTableType(tableType);
     navigateTo('table-browsing');
   };
 
   const handleJoinedTable = () => {
+    setShowTableHint(false);
     setHasJoinedTable(true);
     replaceWith('in-table');
   };
 
   const handleLeaveTable = () => {
+    setShowTableHint(false);
     setHasJoinedTable(false);
     replaceWith('energy-overview');
   };
 
   const handleTableTab = () => {
-    navigateToTab(hasJoinedTable ? 'in-table' : 'table-browsing');
+    if (hasJoinedTable) {
+      setShowTableHint(false);
+      navigateToTab('in-table');
+      return;
+    }
+
+    setShowTableHint(true);
+    navigateToTab('table-browsing');
   };
 
   const tabItems = [
@@ -271,6 +282,61 @@ export default function App() {
     );
   };
 
+  const renderTableHint = () => {
+    if (!showTableHint || hasJoinedTable) {
+      return null;
+    }
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 12, scale: 0.98 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed bottom-24 left-1/2 z-[60] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 md:bottom-auto md:left-auto md:right-8 md:top-24 md:w-96 md:translate-x-0"
+        role="status"
+        aria-live="polite"
+      >
+        <div className="rounded-3xl border border-primary/20 bg-card/96 p-4 shadow-[0_16px_44px_rgba(0,0,0,0.14)] backdrop-blur-2xl">
+          <div className="flex gap-3">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Info size={19} strokeWidth={1.8} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h2 className="text-[15px] text-foreground" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}>
+                Join a table first
+              </h2>
+              <p className="mt-1 text-[13px] leading-relaxed text-foreground/60" style={{ fontFamily: 'Inter, sans-serif' }}>
+                Pick an active table and request to join. Your table will appear here after you're seated.
+              </p>
+              <div className="mt-3 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowTableHint(false);
+                    navigateToTab('table-browsing');
+                  }}
+                  className="rounded-full bg-primary px-4 py-2 text-[13px] text-primary-foreground transition-transform duration-200 active:scale-95"
+                  style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
+                >
+                  Browse tables
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowTableHint(false)}
+                  className="rounded-full px-4 py-2 text-[13px] text-foreground/55 transition-colors duration-200 hover:bg-muted hover:text-foreground"
+                  style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
+                >
+                  Dismiss
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
       {renderDesktopNav()}
@@ -288,6 +354,9 @@ export default function App() {
       </AnimatePresence>
 
       {renderTabBar()}
+      <AnimatePresence>
+        {renderTableHint()}
+      </AnimatePresence>
     </div>
   );
 }
