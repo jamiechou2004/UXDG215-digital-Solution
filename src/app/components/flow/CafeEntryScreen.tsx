@@ -6,6 +6,9 @@ interface CafeEntryScreenProps {
 }
 
 export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
+  const atmosphereTags = ['Welcoming', 'Calm', 'Spacious'];
+  const engagementStates = ['Safe', 'Connected', 'Comfortable', 'In Control'];
+
   return (
     <div className="min-h-screen bg-background flex flex-col md:grid md:grid-cols-[minmax(360px,0.95fr)_minmax(420px,1.05fr)] md:items-stretch">
       {/* Hero image section */}
@@ -42,7 +45,19 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
               </div>
             </div>
 
-            <div className="flex items-center gap-6 text-[14px] text-foreground/60" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <div className="flex flex-wrap items-center gap-2 pb-4">
+              {atmosphereTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-primary/10 bg-primary/5 px-3 py-1 text-[12px] text-primary/80"
+                  style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-6 border-t border-border/70 pt-4 text-[14px] text-foreground/60" style={{ fontFamily: 'Inter, sans-serif' }}>
               <div className="flex items-center gap-2">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -74,6 +89,48 @@ export function CafeEntryScreen({ onContinue }: CafeEntryScreenProps) {
           <p className="text-[17px] leading-relaxed text-foreground/70 mb-8" style={{ fontFamily: 'Inter, sans-serif' }}>
             You've entered a café where people gather at shared tables. Join conversations, meet new people, or simply enjoy the atmosphere.
           </p>
+
+          <div className="mb-8 rounded-3xl border border-border/60 bg-card/70 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+            <div className="flex items-center gap-4">
+              <div className="relative h-16 w-16 flex-shrink-0 rounded-full border border-primary/15 bg-gradient-to-br from-primary/10 via-card to-accent/10">
+                <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/70" />
+                {engagementStates.map((state, index) => {
+                  const positions = [
+                    'left-1/2 top-2 -translate-x-1/2',
+                    'right-2 top-1/2 -translate-y-1/2',
+                    'bottom-2 left-1/2 -translate-x-1/2',
+                    'left-2 top-1/2 -translate-y-1/2',
+                  ];
+
+                  return (
+                    <div
+                      key={state}
+                      className={`absolute h-2.5 w-2.5 rounded-full border border-card ${
+                        index === 0 ? 'bg-primary/70' : index === 1 ? 'bg-[#D9A08B]' : index === 2 ? 'bg-[#AFC7D8]' : 'bg-secondary/80'
+                      } ${positions[index]}`}
+                      aria-label={state}
+                    />
+                  );
+                })}
+              </div>
+              <div className="min-w-0">
+                <p className="mb-2 text-[13px] uppercase tracking-[0.08em] text-foreground/40" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  Cafe engagement
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {engagementStates.map((state) => (
+                    <span
+                      key={state}
+                      className="rounded-full bg-muted/70 px-3 py-1 text-[12px] text-foreground/65"
+                      style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
+                    >
+                      {state}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Current vibe indicators */}
           <div className="space-y-3 mb-12 md:grid md:grid-cols-2 md:gap-3 md:space-y-0">
