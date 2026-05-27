@@ -7,17 +7,14 @@ interface SocialEnergyOverviewProps {
 }
 
 export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOverviewProps) {
-  const engagementStates = ['Safe', 'Connected', 'Comfortable', 'In Control'];
-
   const tableTypes = [
     {
       id: 'quiet-focus',
       title: 'Quiet Focus',
       description: 'Deep work, reading, solo presence',
+      icon: '🌙',
       energy: 'Low',
       activeTables: 2,
-      state: 'Comfortable',
-      profile: ['Calm', 'Spacious', 'Low-pressure'],
       color: 'from-primary/10 to-primary/5',
       borderColor: 'border-primary/20',
     },
@@ -25,10 +22,9 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
       id: 'casual-talk',
       title: 'Casual Coffee Talk',
       description: 'Light conversation, friendly vibes',
+      icon: '☕',
       energy: 'Medium',
       activeTables: 3,
-      state: 'Connected',
-      profile: ['Welcoming', 'Relatable', 'Low-pressure'],
       color: 'from-accent/10 to-accent/5',
       borderColor: 'border-accent/20',
     },
@@ -36,10 +32,9 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
       id: 'creative',
       title: 'Creative Table',
       description: 'Design, writing, making together',
+      icon: '✨',
       energy: 'Medium',
       activeTables: 1,
-      state: 'In Control',
-      profile: ['Interactive', 'Adaptable', 'Balanced'],
       color: 'from-secondary/10 to-secondary/5',
       borderColor: 'border-secondary/20',
     },
@@ -47,23 +42,21 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
       id: 'board-games',
       title: 'Board Games',
       description: 'Play, laugh, friendly competition',
+      icon: '🎲',
       energy: 'High',
       activeTables: 1,
-      state: 'Connected',
-      profile: ['Interactive', 'Welcoming', 'Balanced'],
-      color: 'from-accent/15 to-accent/10',
+      color: 'from-accent/15 to-accent/8',
       borderColor: 'border-accent/25',
     },
     {
       id: 'language',
       title: 'Language Exchange',
       description: 'Practice languages, cultural share',
+      icon: '🗣️',
       energy: 'Medium',
       activeTables: 2,
-      state: 'Safe',
-      profile: ['Relatable', 'Adaptable', 'Welcoming'],
-      color: 'from-primary/10 to-primary/5',
-      borderColor: 'border-primary/20',
+      color: 'from-primary/12 to-primary/6',
+      borderColor: 'border-primary/22',
     },
   ];
 
@@ -83,53 +76,18 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="mb-4 flex items-center justify-between gap-4">
-            <div>
-              <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
-                The Hideout
-              </p>
-              <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
-                Choose your
-                <br />
-                energy
-              </h1>
-            </div>
-
-            <div className="relative mt-2 h-[74px] w-[74px] flex-shrink-0 rounded-full border border-primary/15 bg-card/80 shadow-[0_10px_30px_rgba(0,0,0,0.05)] backdrop-blur-xl">
-              <div className="absolute inset-[12px] rounded-full border border-dashed border-primary/20" />
-              <div className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/70" />
-              <div className="absolute left-1/2 top-2.5 h-3 w-3 -translate-x-1/2 rounded-full bg-primary/70" />
-              <div className="absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[#D9A08B]" />
-              <div className="absolute bottom-2.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#AFC7D8]" />
-              <div className="absolute left-2.5 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-secondary/80" />
-            </div>
-          </div>
+          <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-3" style={{ fontFamily: 'Inter, sans-serif' }}>
+            The Hideout
+          </p>
+          <h1 className="text-[36px] leading-[1.1] tracking-[-0.01em] mb-4 md:text-[52px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 400 }}>
+            Choose your
+            <br />
+            energy
+          </h1>
           <p className="max-w-2xl text-[16px] leading-relaxed text-foreground/70" style={{ fontFamily: 'Inter, sans-serif' }}>
             Every table has its own vibe. Find one that matches how you're feeling.
           </p>
         </motion.div>
-      </div>
-
-      <div className="px-6 pb-6 md:px-8">
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {engagementStates.map((state, i) => (
-            <motion.button
-              key={state}
-              type="button"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.15 + i * 0.04 }}
-              className={`whitespace-nowrap rounded-full border px-4 py-2 text-[13px] transition-colors duration-200 ${
-                i === 0
-                  ? 'border-primary/20 bg-primary/10 text-primary'
-                  : 'border-border/70 bg-card/80 text-foreground/60 hover:bg-muted/70'
-              }`}
-              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
-            >
-              {state}
-            </motion.button>
-          ))}
-        </div>
       </div>
 
       {/* Table type cards */}
@@ -145,13 +103,7 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-start gap-4">
-                <div className="relative h-11 w-11 flex-shrink-0 rounded-2xl border border-border/70 bg-card/70">
-                  <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/70" />
-                  <div className="absolute left-1/2 top-2 h-2 w-2 -translate-x-1/2 rounded-full bg-primary/50" />
-                  <div className="absolute right-2 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#D9A08B]/80" />
-                  <div className="absolute bottom-2 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#AFC7D8]/80" />
-                  <div className="absolute left-2 top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-secondary/70" />
-                </div>
+                <div className="text-[40px] leading-none">{table.icon}</div>
                 <div className="pt-1">
                   <h3 className="text-[24px] leading-tight mb-1" style={{ fontFamily: 'Cormorant, serif', fontWeight: 500 }}>
                     {table.title}
@@ -175,23 +127,6 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
               <div>·</div>
               <div>{table.activeTables} active {table.activeTables === 1 ? 'table' : 'tables'}</div>
             </div>
-
-            <div className="mt-4 border-t border-border/60 pt-4">
-              <div className="mb-2 text-[12px] uppercase tracking-[0.08em] text-foreground/35" style={{ fontFamily: 'Inter, sans-serif' }}>
-                {table.state}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {table.profile.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-card/70 px-3 py-1 text-[12px] text-foreground/60"
-                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
           </motion.button>
         ))}
       </div>
@@ -207,16 +142,14 @@ export function SocialEnergyOverview({ onSelectTable, onBack }: SocialEnergyOver
           <div className="flex items-center justify-between mb-3">
             <div>
               <p className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Your engagement today
+                Your energy today
               </p>
               <div className="text-[24px]" style={{ fontFamily: 'Cormorant, serif', fontWeight: 500 }}>
-                Connected, comfortable
+                Medium
               </div>
             </div>
-            <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-accent/20 to-primary/10">
-              <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/70" />
-              <div className="absolute right-2 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-[#D9A08B]" />
-              <div className="absolute bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#AFC7D8]" />
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center">
+              <span className="text-[24px]">🍃</span>
             </div>
           </div>
           <p className="text-[14px] text-foreground/60 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif' }}>

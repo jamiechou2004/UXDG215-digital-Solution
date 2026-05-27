@@ -7,9 +7,6 @@ interface TablePreviewScreenProps {
 }
 
 export function TablePreviewScreen({ onJoinTable, onBack }: TablePreviewScreenProps) {
-  const stateLabels = ['Safe', 'Connected', 'Comfortable', 'In Control'];
-  const vibeProfile = ['Calm', 'Spacious', 'Low-pressure'];
-
   const members = [
     { name: 'Sarah', initial: 'S', interests: ['Writing', 'Poetry'], energy: 'Low-key' },
     { name: 'Marcus', initial: 'M', interests: ['Reading', 'Philosophy'], energy: 'Calm' },
@@ -41,9 +38,6 @@ export function TablePreviewScreen({ onJoinTable, onBack }: TablePreviewScreenPr
               <div className="px-3 py-1.5 bg-primary/10 rounded-full text-[13px] text-primary" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}>
                 Quiet Focus
               </div>
-              <div className="px-3 py-1.5 bg-[#AFC7D8]/25 rounded-full text-[13px] text-foreground/65" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}>
-                Comfortable
-              </div>
               <div className="px-3 py-1.5 bg-card rounded-full text-[13px] text-foreground/60 border border-border" style={{ fontFamily: 'Inter, sans-serif' }}>
                 2h active
               </div>
@@ -58,36 +52,6 @@ export function TablePreviewScreen({ onJoinTable, onBack }: TablePreviewScreenPr
             <p className="text-[17px] leading-relaxed text-foreground/70 mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
               Working on creative projects in comfortable silence. Occasional sharing of ideas welcome.
             </p>
-
-            <div className="mb-6 rounded-3xl border border-border/70 bg-card/80 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.04)] backdrop-blur-xl">
-              <div className="mb-3 flex items-center justify-between gap-4">
-                <div>
-                  <p className="mb-1 text-[12px] uppercase tracking-[0.08em] text-foreground/40" style={{ fontFamily: 'Inter, sans-serif' }}>
-                    Vibe profile
-                  </p>
-                  <p className="text-[15px] text-foreground/70" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}>
-                    The Reading Table: {vibeProfile.join(' · ')}
-                  </p>
-                </div>
-                <div className="relative h-12 w-12 flex-shrink-0 rounded-full border border-primary/15 bg-gradient-to-br from-card via-primary/5 to-[#AFC7D8]/25">
-                  <div className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/70" />
-                  <div className="absolute left-1/2 top-2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-primary/55" />
-                  <div className="absolute bottom-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#AFC7D8]" />
-                  <div className="absolute left-2 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-secondary/75" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {vibeProfile.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-primary/5 px-3 py-1 text-[12px] text-primary/75"
-                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
 
             {/* Stats */}
             <div className="flex items-center gap-6 text-[15px] text-foreground/60" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -109,39 +73,24 @@ export function TablePreviewScreen({ onJoinTable, onBack }: TablePreviewScreenPr
           {/* Conversation prompts */}
           <div className="mb-8 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
-              <div className="mb-6 flex flex-wrap gap-2">
-                {stateLabels.map((state, i) => (
-                  <span
-                    key={state}
-                    className={`rounded-full border px-3 py-1.5 text-[12px] ${
-                      i === 2
-                        ? 'border-primary/20 bg-primary/10 text-primary'
-                        : 'border-border/70 bg-card text-foreground/55'
-                    }`}
-                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
-                  >
-                    {state}
-                  </span>
-                ))}
-              </div>
-              <h3 className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
-                Conversation topics
-              </h3>
-              <div className="space-y-3">
-                {['What are you working on?', 'Favorite writing spot?', 'Current creative block?'].map((prompt, i) => (
-                  <motion.div
-                    key={prompt}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                    className="bg-card rounded-2xl p-4 border border-border"
-                  >
-                    <p className="text-[15px]" style={{ fontFamily: 'Inter, sans-serif' }}>
-                      {prompt}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+            <h3 className="text-[13px] uppercase tracking-[0.08em] text-foreground/40 mb-4" style={{ fontFamily: 'Inter, sans-serif' }}>
+              Conversation topics
+            </h3>
+            <div className="space-y-3">
+              {['What are you working on?', 'Favorite writing spot?', 'Current creative block?'].map((prompt, i) => (
+                <motion.div
+                  key={prompt}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+                  className="bg-card rounded-2xl p-4 border border-border"
+                >
+                  <p className="text-[15px]" style={{ fontFamily: 'Inter, sans-serif' }}>
+                    {prompt}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
             </div>
 
             <div className="hidden lg:block">
@@ -282,11 +231,11 @@ export function TablePreviewScreen({ onJoinTable, onBack }: TablePreviewScreenPr
             <ul className="space-y-2 text-[15px] text-foreground/70" style={{ fontFamily: 'Inter, sans-serif' }}>
               <li className="flex gap-2">
                 <span className="text-primary">·</span>
-                <span>Respect the calm atmosphere</span>
+                <span>Respect the quiet atmosphere</span>
               </li>
               <li className="flex gap-2">
                 <span className="text-primary">·</span>
-                <span>Share if inspired; quiet presence is welcome</span>
+                <span>Share if inspired, silence is welcome</span>
               </li>
               <li className="flex gap-2">
                 <span className="text-primary">·</span>

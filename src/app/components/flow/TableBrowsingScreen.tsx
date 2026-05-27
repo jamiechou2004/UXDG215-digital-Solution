@@ -9,18 +9,14 @@ interface TableBrowsingScreenProps {
 }
 
 export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual-talk' }: TableBrowsingScreenProps) {
-  const stateFilters = ['Safe', 'Connected', 'Comfortable', 'In Control'];
-
   const tables = [
     {
       id: 1,
-      name: 'The Reading Table',
+      name: 'Sunday morning writers',
       host: 'Sarah',
       vibe: 'Quiet Focus',
       description: 'Working on creative projects in comfortable silence',
       interests: ['Writing', 'Poetry', 'Reading'],
-      state: 'Comfortable',
-      vibeProfile: ['Calm', 'Spacious', 'Low-pressure'],
       members: 3,
       capacity: 4,
       energy: 'Low',
@@ -34,8 +30,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
       vibe: 'Casual Talk',
       description: 'Chatting about design, tech, and side projects',
       interests: ['Design', 'Tech', 'Startups'],
-      state: 'Connected',
-      vibeProfile: ['Welcoming', 'Interactive', 'Relatable'],
       members: 2,
       capacity: 4,
       energy: 'Medium',
@@ -49,8 +43,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
       vibe: 'Casual Talk',
       description: 'Sharing favorite reads and discovering new books',
       interests: ['Fiction', 'Book clubs', 'Literature'],
-      state: 'Safe',
-      vibeProfile: ['Low-pressure', 'Relatable', 'Balanced'],
       members: 2,
       capacity: 5,
       energy: 'Medium',
@@ -85,28 +77,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
         </motion.div>
       </div>
 
-      <div className="px-6 pb-6 md:px-8">
-        <div className="mb-3 text-[12px] uppercase tracking-[0.08em] text-foreground/40" style={{ fontFamily: 'Inter, sans-serif' }}>
-          Choose by how you want to engage
-        </div>
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {stateFilters.map((state, i) => (
-            <button
-              key={state}
-              type="button"
-              className={`whitespace-nowrap rounded-full border px-4 py-2 text-[13px] transition-colors duration-200 ${
-                i === 1
-                  ? 'border-primary/20 bg-primary/10 text-primary'
-                  : 'border-border/70 bg-card/80 text-foreground/60 hover:bg-muted/70'
-              }`}
-              style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}
-            >
-              {state}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Table cards */}
       <div className="px-6 space-y-4 md:grid md:grid-cols-2 md:gap-4 md:space-y-0 md:px-8 xl:grid-cols-3">
         {tables.map((table, i) => (
@@ -121,11 +91,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
             {/* Image header */}
             <div className="relative h-40 overflow-hidden bg-muted">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-              <div className="absolute left-4 top-4">
-                <div className="rounded-full bg-card/95 px-3 py-1.5 text-[12px] text-primary shadow-[0_6px_18px_rgba(0,0,0,0.08)] backdrop-blur-md" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 600 }}>
-                  {table.state}
-                </div>
-              </div>
               <div className="absolute top-4 right-4">
                 <div className="px-3 py-1.5 bg-card/95 backdrop-blur-md rounded-full text-[12px]" style={{ fontFamily: 'Inter, sans-serif' }}>
                   {table.energy} energy
@@ -150,15 +115,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
                 {table.description}
               </p>
 
-              <div className="mb-4 rounded-2xl border border-border/60 bg-muted/35 p-4">
-                <div className="mb-2 text-[12px] uppercase tracking-[0.08em] text-foreground/35" style={{ fontFamily: 'Inter, sans-serif' }}>
-                  Vibe profile
-                </div>
-                <div className="text-[14px] leading-relaxed text-foreground/65" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}>
-                  {table.name}: {table.vibeProfile.join(' · ')}
-                </div>
-              </div>
-
               {/* Interests */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {table.interests.map((interest) => (
@@ -168,15 +124,6 @@ export function TableBrowsingScreen({ onSelectTable, onBack, tableType = 'casual
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {interest}
-                  </span>
-                ))}
-                {table.vibeProfile.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-primary/5 px-3 py-1 text-[13px] text-primary/70"
-                    style={{ fontFamily: 'Inter, sans-serif', fontWeight: 500 }}
-                  >
-                    {tag}
                   </span>
                 ))}
               </div>
